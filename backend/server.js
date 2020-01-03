@@ -20,7 +20,7 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true
   })
-  .then(() => console.log("💹 Mongo Atlas cluster connected..."));
+  .then(() => console.log("✔ Mongo Atlas cluster connected..."));
 
 // middlewares
 app.use(morgan("dev")); // logger
