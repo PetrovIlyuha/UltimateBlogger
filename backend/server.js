@@ -8,6 +8,7 @@ require("dotenv").config();
 // bringing in routes
 const blogRoutes = require("./routes/blog");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 // app
 const app = express();
@@ -34,13 +35,10 @@ if (process.env.NODE_ENV === "development") {
 // routes middleware
 app.use("/api", blogRoutes);
 app.use("/api", authRoutes);
-// routes
-app.get("/api", (req, res) => {
-  res.json({ time: new Date().toString() });
-});
+app.use("/api", userRoutes);
 
 // port
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`✔ Server is listening on http://localhost:${port}`);
 });
