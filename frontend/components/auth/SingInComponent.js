@@ -1,6 +1,6 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
-import { signin } from "../../actions/auth";
+import { signin, authenticate } from "../../actions/auth";
 import Router from "next/router";
 
 const SignInComponent = () => {
@@ -26,7 +26,9 @@ const SignInComponent = () => {
         // TODO: Save user token to cookie
         // TODO: Save user info to local storage
         // TODO: authenticate user
-        Router.push("/");
+        authenticate(data, () => {
+          Router.push("/");
+        });
       }
     });
     console.log(values);
