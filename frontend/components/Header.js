@@ -45,13 +45,35 @@ const Header = () => {
                 </NavItem>
               </div>
             )}
-
-            {isAuth() && (
-              <NavItem style={navIconSingle}>
-                <GoSignOut
-                  onClick={() => signout(() => Router.push(`/signin`))}
-                />
-              </NavItem>
+            {isAuth() && isAuth().role === 0 && (
+              <div style={navIcons}>
+                <NavItem>
+                  <Link href="/user">
+                    <NavLink style={dashboardText}>
+                      🕛{isAuth().name}`s Dashboard
+                    </NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <GoSignOut
+                    onClick={() => signout(() => Router.push(`/signin`))}
+                  />
+                </NavItem>
+              </div>
+            )}
+            {isAuth() && isAuth().role === 1 && (
+              <div style={navIcons}>
+                <NavItem>
+                  <Link href="/admin">
+                    <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <GoSignOut
+                    onClick={() => signout(() => Router.push(`/signin`))}
+                  />
+                </NavItem>
+              </div>
             )}
           </Nav>
         </Collapse>
@@ -72,11 +94,16 @@ const navItem = {
 
 const navIcons = {
   display: "flex",
-  justifyContent: "space-between",
-  width: "120px",
+  justifyContent: "space-around",
+  alignItems: "center",
+  width: "200px",
   color: "#eaeaea",
   fontSize: "1.4rem",
   cursor: "pointer"
+};
+
+const dashboardText = {
+  fontSize: "0.9rem"
 };
 
 const navIconSingle = {
