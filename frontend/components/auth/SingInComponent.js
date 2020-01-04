@@ -1,37 +1,32 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
-import { signup } from "../../actions/auth";
+import { signin } from "../../actions/auth";
+import Router from "next/router";
 
-const SignupComponent = () => {
+const SignInComponent = () => {
   const [values, setValues] = useState({
-    name: "Florence",
-    email: "flora@gmail.com",
-    password: "123456",
+    name: "",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     message: "",
     showForm: true
   });
-  const { name, email, password, error, loading, message, showForm } = values;
+  const { email, password, error, loading, message, showForm } = values;
 
   const handleSubmit = e => {
     e.preventDefault();
     setValues({ ...values, loading: true, error: false });
-    const user = { name, email, password };
-    signup(user).then(data => {
+    const user = { email, password };
+    signin(user).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, loaging: false });
       } else {
-        setValues({
-          ...values,
-          name: "",
-          email: "",
-          password: "",
-          error: "",
-          loaging: false,
-          message: data.message,
-          showForm: false
-        });
+        // TODO: Save user token to cookie
+        // TODO: Save user info to local storage
+        // TODO: authenticate user
+        Router.push("/");
       }
     });
     console.log(values);
@@ -48,20 +43,9 @@ const SignupComponent = () => {
   const showMessage = () =>
     message ? <div className="alert alert-info">{message}</div> : "";
 
-  const signupForm = () => {
+  const signinForm = () => {
     return (
       <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="name">Name</Label>
-          <Input
-            onChange={handleChange("name")}
-            value={name}
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Your name"
-          />
-        </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
@@ -94,9 +78,9 @@ const SignupComponent = () => {
       {showError()}
       {showLoading()}
       {showMessage()}
-      {showForm && signupForm()}
+      {showForm && signinForm()}
     </>
   );
 };
 
-export default SignupComponent;
+export default SignInComponent;
