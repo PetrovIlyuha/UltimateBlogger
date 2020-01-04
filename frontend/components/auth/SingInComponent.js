@@ -70,7 +70,7 @@ const SignInComponent = () => {
             placeholder="Choose Password"
           />
         </FormGroup>
-        <Button className="btn-primary">Submit</Button>
+        <Button className="btn-primary">Sign In</Button>
       </Form>
     );
   };

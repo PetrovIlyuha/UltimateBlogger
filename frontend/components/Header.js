@@ -25,29 +25,32 @@ const Header = () => {
       <Navbar style={navStyles} expand="xs">
         <Link href="/">
           <NavLink style={navItem} className="font-weight-bold">
-            {APP_NAME} 🖋
+            {APP_NAME} 🖋👨‍💻
           </NavLink>
         </Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" style={navIcons}>
-            <NavItem>
-              <Link href="/signin">
-                <FaSignInAlt />
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/signup">
-                <GiHeartInside />
-              </Link>
-            </NavItem>
+          <Nav className="ml-auto">
+            {!isAuth() && (
+              <div style={navIcons}>
+                <NavItem>
+                  <Link href="/signin">
+                    <FaSignInAlt />
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link href="/signup">
+                    <GiHeartInside />
+                  </Link>
+                </NavItem>
+              </div>
+            )}
+
             {isAuth() && (
-              <NavItem>
-                <Link>
-                  <GoSignOut
-                    onClick={() => signout(() => Router.push(`/signin`))}
-                  />
-                </Link>
+              <NavItem style={navIconSingle}>
+                <GoSignOut
+                  onClick={() => signout(() => Router.push(`/signin`))}
+                />
               </NavItem>
             )}
           </Nav>
@@ -69,10 +72,17 @@ const navItem = {
 
 const navIcons = {
   display: "flex",
-  justifyContent: "space-around",
-  width: "180px",
+  justifyContent: "space-between",
+  width: "120px",
   color: "#eaeaea",
-  fontSize: "1.4rem"
+  fontSize: "1.4rem",
+  cursor: "pointer"
+};
+
+const navIconSingle = {
+  color: "#eaeaea",
+  fontSize: "1.4rem",
+  cursor: "pointer"
 };
 
 export default Header;

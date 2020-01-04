@@ -4,9 +4,9 @@ import { signup } from "../../actions/auth";
 
 const SignupComponent = () => {
   const [values, setValues] = useState({
-    name: "Florence",
-    email: "flora@gmail.com",
-    password: "123456",
+    name: "",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     message: "",
@@ -84,7 +84,7 @@ const SignupComponent = () => {
             placeholder="Choose Password"
           />
         </FormGroup>
-        <Button className="btn-primary">Submit</Button>
+        <Button className="btn-primary">Sign Up</Button>
       </Form>
     );
   };

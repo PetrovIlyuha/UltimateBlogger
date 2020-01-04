@@ -13,7 +13,7 @@ export const Footer = () => {
         <Navbar expand="xs" style={style}>
           <Link href="/">
             <NavLink className="font-weight-bold" style={navItem}>
-              {APP_NAME} &copy; {new Date().getFullYear()} 🖋
+              {APP_NAME} 🖋👨‍💻 &copy; {new Date().getFullYear()}
             </NavLink>
           </Link>
           <Nav
@@ -67,7 +67,7 @@ const phantom = {
 
 const navItem = {
   color: "#eaeaea",
-  fontSize: "1.4rem"
+  fontSize: "1.2rem"
 };
 
 export default Footer;
