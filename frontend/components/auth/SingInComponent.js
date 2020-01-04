@@ -1,6 +1,6 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
-import { signin, authenticate } from "../../actions/auth";
+import { signin, authenticate, isAuth } from "../../actions/auth";
 import Router from "next/router";
 
 const SignInComponent = () => {
@@ -27,7 +27,11 @@ const SignInComponent = () => {
         // TODO: Save user info to local storage
         // TODO: authenticate user
         authenticate(data, () => {
-          Router.push("/");
+          if (isAuth && isAuth().role === 1) {
+            Router.push("/admin");
+          } else {
+            Router.push("/user");
+          }
         });
       }
     });
