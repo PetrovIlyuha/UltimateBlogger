@@ -3,6 +3,9 @@ import Link from "next/link";
 import { APP_NAME } from "../config";
 import { FaSignInAlt } from "react-icons/fa";
 import { GiHeartInside } from "react-icons/gi";
+import { GoSignOut } from "react-icons/go";
+import { signout, isAuth } from "../actions/auth";
+import Router from "next/router";
 
 import {
   Collapse,
@@ -38,6 +41,15 @@ const Header = () => {
                 <GiHeartInside />
               </Link>
             </NavItem>
+            {isAuth() && (
+              <NavItem>
+                <Link>
+                  <GoSignOut
+                    onClick={() => signout(() => Router.push(`/signin`))}
+                  />
+                </Link>
+              </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
