@@ -6,16 +6,21 @@ import { GiHeartInside } from "react-icons/gi";
 import { GoSignOut } from "react-icons/go";
 import { signout, isAuth } from "../actions/auth";
 import Router from "next/router";
+import NProgress from "nprogress";
 
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink
 } from "reactstrap";
+import "../node_modules/nprogress/nprogress.css";
+
+Router.onRouteChangeStart = url => NProgress.start();
+Router.onRouteChangeComplete = url => NProgress.done();
+Router.onRouteChangeError = url => NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
