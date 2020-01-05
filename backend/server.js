@@ -5,11 +5,13 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+
 // bringing in routes
 const blogRoutes = require("./routes/blog");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
+const tagsRoutes = require("./routes/tags");
 
 // app
 const app = express();
@@ -38,6 +40,7 @@ app.use("/api", blogRoutes);
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", tagsRoutes);
 
 // port
 const port = process.env.PORT || 8000;
