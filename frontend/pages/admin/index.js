@@ -1,6 +1,5 @@
 import Layout from "../../components/Layout";
 import Admin from "../../components/auth/Admin";
-import Category from "../../components/crud/Category";
 import Link from "next/link";
 
 const AdminIndex = () => {
@@ -16,7 +15,12 @@ const AdminIndex = () => {
               <ul className="list-group">
                 <li className="list-group-item">
                   <Link href="admin/crud/category-tag">
-                    <Category />
+                    <a>Create Category</a>
+                  </Link>
+                </li>
+                <li className="list-group-item">
+                  <Link href="admin/crud/category-tag">
+                    <a>Create Tag</a>
                   </Link>
                 </li>
               </ul>
