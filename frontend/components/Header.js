@@ -88,8 +88,10 @@ const Header = () => {
 };
 
 const navStyles = {
-  backgroundColor: "#3a7bd5",
-  width: "100vw"
+  backgroundColor: "#263029",
+  // width: "100vw",
+  borderBottom: "2px solid yellow",
+  boxShadow: "-2px 1px 26px 2px rgba(12,230,106,0.93)"
 };
 
 const navItem = {

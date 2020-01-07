@@ -7,10 +7,10 @@ const CategoryTag = () => {
   return (
     <Layout>
       <Admin>
-        <div className="container-fluid">
+        <div className="container-fluid" style={categoriesPageStyles}>
           <div className="row">
             <div className="col-md-12 py-5 text-center">
-              <h2>Manage Categories and Tags</h2>
+              <h2 style={{ color: "white" }}>Manage Categories and Tags</h2>
             </div>
             <div className="col-md-4">
               <Category />
@@ -25,4 +25,9 @@ const CategoryTag = () => {
   );
 };
 
+const categoriesPageStyles = {
+  backgroundColor: "#2f2347",
+  height: "100vh"
+  // width: "100vw"
+};
 export default CategoryTag;
