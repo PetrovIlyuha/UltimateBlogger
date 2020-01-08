@@ -9,6 +9,7 @@ import { getTags } from "../../actions/tags";
 import { createBlog } from "../../actions/blog";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "../../node_modules/react-quill/dist/quill.snow.css";
+import { QuillModules, QuillFormats } from "../../helpers/quill";
 
 const CreateBlog = ({ router }) => {
   const blogFromLS = () => {
@@ -45,6 +46,7 @@ const CreateBlog = ({ router }) => {
     title,
     hidePublishButton
   } = values;
+  const token = getCookie("token");
 
   useEffect(() => {
     setValues({ ...values, formData: new FormData() });
@@ -74,6 +76,22 @@ const CreateBlog = ({ router }) => {
 
   const publishBlog = e => {
     e.preventDefault();
+    createBlog(formData, token).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          title: "",
+          error: "",
+          success: `A new blog titled "${data.title} was created"`
+        });
+        setBody("");
+        setChecked([]);
+        setCheckedTag([]);
+      }
+    });
+    console.log(values);
   };
 
   const handleChange = name => event => {
@@ -150,9 +168,27 @@ const CreateBlog = ({ router }) => {
     );
   };
 
+  const showError = () => {
+    <div
+      className="alert alert-danger"
+      // style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>;
+  };
+
+  const showSuccess = () => {
+    <div
+      className="alert alert-success"
+      // style={{ display: success ? "" : "none" }}
+    >
+      {success}
+    </div>;
+  };
+
   const createBlogForm = () => {
     return (
-      <form onSubmit={publishBlog}>
+      <form onSubmit={publishBlog} className="ql-editor">
         <div className="form-group">
           <label style={{ color: "white" }}>Title</label>
           <input
@@ -163,10 +199,10 @@ const CreateBlog = ({ router }) => {
           />
         </div>
 
-        <div className="form-group" style={yellowPaleBg}>
+        <div className="form-group" style={editorArea}>
           <ReactQuill
-            modules={CreateBlog.modules}
-            formats={CreateBlog.formats}
+            modules={QuillModules}
+            formats={QuillFormats}
             value={body}
             placeholder="Write something inspiring..."
             onChange={handleBody}
@@ -180,11 +216,16 @@ const CreateBlog = ({ router }) => {
       </form>
     );
   };
+
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pb-5">
       <div className="row">
         <div className="col-md-8">
           {createBlogForm()}
+          <div className="pt-3">
+            {error && showError()}
+            {success && showSuccess()}
+          </div>
           <hr />
         </div>
         <div className="col-md-4 text-white">
@@ -224,10 +265,10 @@ const CreateBlog = ({ router }) => {
   );
 };
 
-const whiteText = {
-  color: "white"
+const editorArea = {
+  backgroundColor: "lightyellow",
+  minHeight: "300px"
 };
-
 const yellowPaleBg = {
   backgroundColor: "#f8fcbd"
 };
@@ -235,33 +276,5 @@ const scrollableList = {
   maxHeight: "200px",
   overflowY: "scroll"
 };
-CreateBlog.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image", "video"],
-    ["clean"],
-    ["code-block"]
-  ]
-};
-
-CreateBlog.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "link",
-  "image",
-  "video",
-  "code-block"
-];
 
 export default withRouter(CreateBlog);
