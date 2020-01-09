@@ -269,9 +269,7 @@ const editorArea = {
   backgroundColor: "lightyellow",
   minHeight: "300px"
 };
-const yellowPaleBg = {
-  backgroundColor: "#f8fcbd"
-};
+
 const scrollableList = {
   maxHeight: "200px",
   overflowY: "scroll"

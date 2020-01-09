@@ -66,7 +66,10 @@ const Header = () => {
                 <NavItem>
                   <Link href="/user">
                     <NavLink style={dashboardText}>
-                      🕛{isAuth().name}`s Dashboard
+                      🕛
+                      <span style={{ dashboardName }}>
+                        {isAuth().name}`s Dashboard
+                      </span>
                     </NavLink>
                   </Link>
                 </NavItem>
@@ -111,8 +114,10 @@ const navStyles = {
 };
 
 const navItem = {
-  color: "#eaeaea",
-  fontSize: "1.4rem"
+  color: "green",
+  fontSize: "1.4rem",
+  textShadow:
+    "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
 };
 
 const navIcons = {
@@ -120,19 +125,20 @@ const navIcons = {
   justifyContent: "space-around",
   alignItems: "center",
   width: "200px",
-  color: "#eaeaea",
+  color: "lightyellow",
   fontSize: "1.4rem",
-  cursor: "pointer"
+  cursor: "pointer",
+  textShadow:
+    "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
 };
 
 const dashboardText = {
-  fontSize: "0.5rem !important"
+  fontSize: "0.5rem",
+  color: "green"
 };
 
-const navIconSingle = {
-  color: "#eaeaea",
-  fontSize: "1.4rem",
-  cursor: "pointer"
+const dashboardName = {
+  color: "green"
 };
 
 export default Header;
