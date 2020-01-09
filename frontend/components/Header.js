@@ -4,6 +4,7 @@ import { APP_NAME } from "../config";
 import { FaSignInAlt } from "react-icons/fa";
 import { GiHeartInside } from "react-icons/gi";
 import { GoSignOut } from "react-icons/go";
+import { FaBlogger } from "react-icons/fa";
 import { signout, isAuth } from "../actions/auth";
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -39,6 +40,11 @@ const Header = () => {
             {!isAuth() && (
               <div style={navIcons}>
                 <NavItem>
+                  <Link href="/blogs">
+                    <FaBlogger />
+                  </Link>
+                </NavItem>
+                <NavItem>
                   <Link href="/signin">
                     <FaSignInAlt />
                   </Link>
@@ -52,6 +58,11 @@ const Header = () => {
             )}
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
+                <NavItem>
+                  <Link href="/blogs">
+                    <FaBlogger />
+                  </Link>
+                </NavItem>
                 <NavItem>
                   <Link href="/user">
                     <NavLink style={dashboardText}>
@@ -68,6 +79,11 @@ const Header = () => {
             )}
             {isAuth() && isAuth().role === 1 && (
               <div style={navIcons}>
+                <NavItem>
+                  <Link href="/blogs">
+                    <FaBlogger />
+                  </Link>
+                </NavItem>
                 <NavItem>
                   <Link href="/admin">
                     <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
@@ -110,7 +126,7 @@ const navIcons = {
 };
 
 const dashboardText = {
-  fontSize: "0.9rem"
+  fontSize: "0.5rem !important"
 };
 
 const navIconSingle = {
