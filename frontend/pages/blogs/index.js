@@ -72,8 +72,11 @@ const Blogs = ({
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMoreBlogs} className="btn btn-primary btn-lg">
-          Load more...
+        <button
+          onClick={loadMoreBlogs}
+          className="btn btn-primary btn-lg text-center"
+        >
+          Show more...
         </button>
       )
     );
@@ -150,9 +153,15 @@ const Blogs = ({
               </section>
             </header>
           </div>
-          <div className="container-fluid mt-3">{showAllBlogs()}</div>
-          <div className="container-fluid mt-3">{showLoadedBlogs()}</div>
-          <div className="container-fluid">{loadMoreButton()}</div>
+          <div className="container-fluid mt-3 font-weight-bold">
+            {showAllBlogs()}
+          </div>
+          <div className="container-fluid mt-3 font-weight-bold">
+            {showLoadedBlogs()}
+          </div>
+          <div className="container-fluid text-center pb-3">
+            {loadMoreButton()}
+          </div>
         </main>
       </Layout>
     </>
@@ -182,7 +191,10 @@ const categoriesPageStyles = {
   paddingTop: "100px",
   background:
     "radial-gradient(100% 225% at 100% 0%, #FF0000 0%, #000000 100%), linear-gradient(236deg, #00C2FF 0%, #000000 100%), linear-gradient(135deg, #CDFFEB 0%, #CDFFEB 36%, #009F9D 36%, #009F9D 60%, #07456F 60%, #07456F 67%, #0F0A3C 67%, #0F0A3C 100%)",
-  backgroundBlendMode: "overlay, hard-light, normal"
+  backgroundBlendMode: "overlay, hard-light, normal",
+  backgroundPosition: "center",
+  backgroundRepear: "no-repeat",
+  backgroundSize: "cover"
 };
 
 export default withRouter(Blogs); // getInitialProps
