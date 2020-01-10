@@ -47,7 +47,7 @@ export const Footer = () => {
   );
 };
 const style = {
-  backgroundColor: "#d5783a",
+  background: "linear-gradient(to left, #911d14, #c42014)",
   borderTop: "1px solid #E7E7E7",
   textAlign: "center",
   padding: "20px",

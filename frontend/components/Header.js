@@ -107,8 +107,10 @@ const Header = () => {
 };
 
 const navStyles = {
+  position: "fixed",
   backgroundColor: "#263029",
-  // width: "100vw",
+  width: "100vw",
+  zIndex: "100",
   borderBottom: "2px solid yellow",
   boxShadow: "-2px 1px 26px 2px rgba(12,230,106,0.93)"
 };

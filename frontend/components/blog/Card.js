@@ -15,7 +15,7 @@ const Card = ({ blog }) => {
   const showBlogTags = blog => {
     return blog.tags.map((tag, index) => (
       <Link key={index} href={`/categories/${tag.slug}`}>
-        <a className="btn btn-outline-info mr-1 ml-1 mt-3">{tag.name}</a>
+        <a className="btn btn-outline-danger mr-1 ml-1 mt-3">{tag.name}</a>
       </Link>
     ));
   };
@@ -26,7 +26,7 @@ const Card = ({ blog }) => {
         <Link href={`/blogs/${blog.slug}`}>
           <a>
             <h2
-              className="pt-3 pb-3 font-weight-bols"
+              className="pt-3 pb-3 text-center font-weight-bold"
               style={{ color: "white" }}
             >
               {blog.title}
@@ -36,7 +36,7 @@ const Card = ({ blog }) => {
       </header>
       <section>
         <p
-          className="mark ml-1 pt-2 pb-2"
+          className="mark ml-5 pt-2 pb-2"
           style={{
             background:
               "linear-gradient(328.78deg, #030086 14.45%, #BD6177 84.36%), linear-gradient(301.28deg, #209B4A 0%, #7000FF 100%), radial-gradient(100% 138.56% at 100% 0%, #D50000 0%, #00FFE0 100%), radial-gradient(100% 148.07% at 0% 0%, #D50000 0%, #00FFFF 100%)",
@@ -54,9 +54,9 @@ const Card = ({ blog }) => {
         </p>
       </section>
       <section style={categoriesTabsGrid}>
-        <p style={{ paddingTop: "15px" }}>Categories:</p>
+        <p style={{ paddingTop: "15px", paddingLeft: "20px" }}>Categories:</p>
         <div>{showBlogCategories(blog)}</div>
-        <p style={{ paddingTop: "15px" }}>Tags:</p>
+        <p style={{ paddingTop: "15px", paddingLeft: "20px" }}>Tags:</p>
         <div>{showBlogTags(blog)}</div>
       </section>
       <div className="row">
@@ -92,6 +92,6 @@ const categoriesTabsGrid = {
   justifyItems: "start"
 };
 
-const blogPhoto = { maxHeight: "280px", width: "auto" };
+const blogPhoto = { maxHeight: "280px", width: "auto", marginLeft: "20px" };
 
 export default Card;
