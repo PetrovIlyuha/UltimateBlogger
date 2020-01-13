@@ -5,8 +5,32 @@ import { useState } from "react";
 import { singleBlog } from "../../actions/blog";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 import moment from "moment";
+import renderHTML from "react-render-html";
 
-const SingleBlog = ({ blog }) => {
+const SingleBlog = ({ blog, query }) => {
+  const head = () => (
+    <Head>
+      <title>
+        {blog.title} | {`${APP_NAME}`}
+      </title>
+      <meta name="description" content={blog.mdesc} />
+      <link rel="canonical" href={`${DOMAIN}/blogs/${query.slug}`} />
+      <meta property="og:title" content={`${blog.title} | ${APP_NAME}`} />
+      <meta property="og:description" content={blog.mdesc} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${DOMAIN}/blogs/${query.slug}`} />
+      <meta property="og:site_name" content={`${APP_NAME}`} />
+
+      <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />
+      <meta
+        property="og:image:secure_url"
+        content={`${API}/blog/photo/${blog.slug}`}
+      />
+      <meta property="og:image:type" content="image/jpg" />
+      <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+    </Head>
+  );
+
   const showBlogCategories = blog => {
     return blog.categories.map((category, index) => (
       <Link key={index} href={`/categories/${category.slug}`}>
@@ -24,37 +48,32 @@ const SingleBlog = ({ blog }) => {
   };
   return (
     <>
+      {head()}
       <Layout>
         <main style={singleBlogPageStyles}>
           <article>
             <div className="container-fluid">
               <section>
-                <div className="row" style={{ marginTop: "-30px" }}>
-                  <img
-                    src={`${API}/blog/photo/${blog.slug}`}
-                    alt={blog.title}
-                    className="img img-fluid featured-image"
-                  />
+                <div className="row">
+                  <div className="col-lg-12 mt-3 text-center">
+                    <img
+                      src={`${API}/blog/photo/${blog.slug}`}
+                      alt={blog.title}
+                      className="img img-fluid featured-image"
+                      style={{ borderRadius: "30px" }}
+                    />
+                  </div>
                 </div>
               </section>
 
               <section>
-                <p
-                  className="lead pt-1 pb-1 mt-3"
-                  style={{
-                    background:
-                      "linear-gradient(125deg, #FFFFFF 0%, #000000 100%), linear-gradient(200deg, #FFD9E8 0%, #FFD9E8 50%, #DE95BA calc(50% + 1px), #DE95BA 60%, #7F4A88 calc(60% + 1px), #7F4A88 75%, #4A266A calc(75% + 1px), #4A266A 100%), linear-gradient(113deg, #FFD9E8 0%, #FFD9E8 40%, #DE95BA calc(40% + 1px), #DE95BA 50%, #7F4A88 calc(50% + 1px), #7F4A88 70%, #4A266A calc(70% + 1px), #4A266A 100%)",
-                    backgroundBlendMode: "overlay, overlay, normal",
-                    filter: "blur(80%)",
-                    color: "#9ad9ab",
-                    maxWidth: "350px",
-                    paddingLeft: "12px",
-                    fontSize: "0.9rem",
-                    borderRadius: "20px",
-                    fontFamily: "Arial",
-                    border: "2px solid red"
-                  }}
+                <h3
+                  className="pt-3 text-center font-weight-bold"
+                  style={{ color: "white" }}
                 >
+                  {blog.title}
+                </h3>
+                <p className="lead pt-1 pb-1 mt-3" style={authoredBy}>
                   >{" "}
                   <span style={{ color: "black", fontWeight: "bold" }}>
                     Authored by {blog.postedBy.name} | Published
@@ -73,6 +92,19 @@ const SingleBlog = ({ blog }) => {
                 </section>
               </section>
             </div>
+            <div className="container" style={bodyStyles}>
+              <section>
+                <div className="col-md-12 lead">{renderHTML(blog.body)}</div>
+              </section>
+            </div>
+            <div className="container pb-5" style={bodyStyles}>
+              <h4 className="text-center pt-5 pb-5 h2">Related Blogs</h4>
+              <hr style={{ borderColor: "white" }} />
+              <p>Show related blogs</p>
+            </div>
+            <div className="container pb-5" style={bodyStyles}>
+              <p>Show comments</p>
+            </div>
           </article>
         </main>
       </Layout>
@@ -85,20 +117,42 @@ SingleBlog.getInitialProps = ({ query }) => {
     if (data.error) {
       console.log(data.error);
     } else {
-      return { blog: data };
+      return { blog: data, query };
     }
   });
 };
 
 const singleBlogPageStyles = {
-  paddingTop: "100px"
+  paddingTop: "100px",
+  background:
+    "linear-gradient(114.95deg, rgba(235, 0, 255, 0.5) 0%, rgba(0, 71, 255, 0) 34.35%), linear-gradient(180deg, #004B5B 0%, #FFA7A7 100%), linear-gradient(244.35deg, #FFB26A 0%, #3676B1 50.58%, #00A3FF 100%), linear-gradient(244.35deg, #FFFFFF 0%, #004A74 49.48%, #FF0000 100%), radial-gradient(100% 233.99% at 0% 100%, #B70000 0%, #AD00FF 100%), linear-gradient(307.27deg, #219D87 0.37%, #2650BA 50.19%, #2800C6 100%), radial-gradient(100% 140% at 100% 0%, #FF00C7 0%, #006C7A 49.48%, #760000 100%)",
+  backgroundBlendMode:
+    "hard-light, overlay, overlay, overlay, difference, difference, normal"
 };
 
 const categoriesTabsGrid = {
   display: "grid",
   gridTemplateColumns: "20% 80%",
   alignItems: "center",
-  justifyItems: "start"
+  justifyItems: "start",
+  color: "white"
+};
+
+const authoredBy = {
+  background:
+    "linear-gradient(125deg, #FFFFFF 0%, #000000 100%), linear-gradient(200deg, #FFD9E8 0%, #FFD9E8 50%, #DE95BA calc(50% + 1px), #DE95BA 60%, #7F4A88 calc(60% + 1px), #7F4A88 75%, #4A266A calc(75% + 1px), #4A266A 100%), linear-gradient(113deg, #FFD9E8 0%, #FFD9E8 40%, #DE95BA calc(40% + 1px), #DE95BA 50%, #7F4A88 calc(50% + 1px), #7F4A88 70%, #4A266A calc(70% + 1px), #4A266A 100%)",
+  backgroundBlendMode: "overlay, overlay, normal",
+  filter: "blur(80%)",
+  color: "#9ad9ab",
+  maxWidth: "350px",
+  paddingLeft: "12px",
+  fontSize: "0.9rem",
+  borderRadius: "20px",
+  fontFamily: "Arial",
+  border: "2px solid red"
+};
+const bodyStyles = {
+  color: "white"
 };
 
 export default SingleBlog;

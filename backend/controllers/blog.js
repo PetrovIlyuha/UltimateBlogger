@@ -177,7 +177,7 @@ exports.read = (req, res) => {
     .populate("tags", "_id name slug")
     .populate("postedBy", "_id name username")
     .select(
-      "_id title slug mtitle mdesc categories tags postedBy createdAt updatedAt"
+      "_id title slug mtitle mdesc body categories tags postedBy createdAt updatedAt"
     )
     .exec((err, data) => {
       if (err) {

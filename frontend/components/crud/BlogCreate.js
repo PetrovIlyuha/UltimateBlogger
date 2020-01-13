@@ -226,7 +226,7 @@ const CreateBlog = ({ router }) => {
             {error && showError()}
             {success && showSuccess()}
           </div>
-          <hr />
+          <hr style={{ borderColor: "white" }} />
         </div>
         <div className="col-md-4 text-white">
           <div>
