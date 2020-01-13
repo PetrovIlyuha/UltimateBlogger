@@ -85,6 +85,7 @@ const Header = () => {
                 <NavItem>
                   <Link href="/blogs">
                     <FaBlogger />
+                    {/* <NavLink>Blogs</NavLink> */}
                   </Link>
                 </NavItem>
                 <NavItem>

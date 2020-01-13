@@ -34,3 +34,13 @@ export const listBlogsWithCategoriesAndTags = (skip, limit) => {
     })
     .catch(error => console.log(error));
 };
+
+export const singleBlog = slug => {
+  return fetch(`${API}/blog/${slug}`, {
+    method: "GET"
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
