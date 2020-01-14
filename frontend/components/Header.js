@@ -66,10 +66,7 @@ const Header = () => {
                 <NavItem>
                   <Link href="/user">
                     <NavLink style={dashboardText}>
-                      🕛
-                      <span style={{ dashboardName }}>
-                        {isAuth().name}`s Dashboard
-                      </span>
+                      <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
                     </NavLink>
                   </Link>
                 </NavItem>
@@ -85,13 +82,12 @@ const Header = () => {
                 <NavItem>
                   <Link href="/blogs">
                     <FaBlogger />
-                    {/* <NavLink>Blogs</NavLink> */}
                   </Link>
                 </NavItem>
                 <NavItem>
-                  <Link href="/admin">
+                  <NavLink href="/admin" style={dashboardText}>
                     <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
-                  </Link>
+                  </NavLink>
                 </NavItem>
                 <NavItem>
                   <GoSignOut
@@ -137,8 +133,8 @@ const navIcons = {
 };
 
 const dashboardText = {
-  fontSize: "0.5rem",
-  color: "green"
+  fontSize: "1.2rem",
+  color: "lightyellow"
 };
 
 const dashboardName = {
