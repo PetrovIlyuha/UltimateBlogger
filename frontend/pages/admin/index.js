@@ -8,7 +8,10 @@ const AdminIndex = () => {
       <Admin>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12 py-5 text-center">
+            <div
+              className="col-md-12 py-5 text-center"
+              style={{ marginTop: "100px" }}
+            >
               <h2>Admin Dashboard</h2>
             </div>
             <div className="col-md-4">

@@ -125,10 +125,10 @@ const navItem = {
 
 const navIcons = {
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
   marginRight: "30px",
   alignItems: "center",
-  maxWidth: "230px",
+  maxWidth: "330px",
   color: "lightyellow",
   fontSize: "1.4rem",
   cursor: "pointer",
