@@ -1,4 +1,5 @@
 const Tag = require("../models/tags");
+const Blog = require("../models/blog");
 const slugify = require("slugify");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
@@ -38,7 +39,21 @@ exports.read = (req, res) => {
         error: "Tag was not found"
       });
     }
-    res.json(tag);
+    Blog.find({ tags: tag })
+      .populate("categories", "_id name slug")
+      .populate("tags", "_id name slug")
+      .populate("postedBy", "_id name")
+      .select(
+        "_id title slug excerpt categories postedBy tags createdAt updatedAt"
+      )
+      .exec((err, data) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
+        }
+        res.json({ tag: tag, blogs: data });
+      });
   });
 };
 

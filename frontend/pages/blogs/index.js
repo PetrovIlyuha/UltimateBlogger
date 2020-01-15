@@ -147,7 +147,7 @@ const Blogs = ({
               <section>
                 <div className="pb-5">
                   {showAllCategories()}
-                  <hr style={{ borderColor: "red" }} />
+                  <hr style={{ borderColor: "white" }} />
                   {showAllTags()}
                 </div>
               </section>
