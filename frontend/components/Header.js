@@ -8,6 +8,7 @@ import { FaBlogger } from "react-icons/fa";
 import { signout, isAuth } from "../actions/auth";
 import Router from "next/router";
 import NProgress from "nprogress";
+import Search from "../components/blog/Search";
 
 import {
   Collapse,
@@ -27,13 +28,14 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
-    <div>
+    <React.Fragment>
       <Navbar style={navStyles} expand="xs">
         <Link href="/">
           <NavLink style={navItem} className="font-weight-bold">
             {APP_NAME} 🖋👨‍💻
           </NavLink>
         </Link>
+        <Search style={searchForm} />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto">
@@ -99,7 +101,7 @@ const Header = () => {
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+    </React.Fragment>
   );
 };
 
@@ -133,6 +135,11 @@ const navIcons = {
     "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
 };
 
+const searchForm = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center"
+};
 const dashboardText = {
   fontSize: "1.2rem",
   color: "lightyellow"
