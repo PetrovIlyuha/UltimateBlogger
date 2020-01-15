@@ -37,7 +37,7 @@ const Search = () => {
   const searchedBlogs = (results = []) => {
     console.log(results);
     return (
-      <div className="jumbotron bg-white">
+      <div className="jumbotron" style={searchResultsStyles}>
         {message && <p className="pt-4 text-muted fonr-italic">{message}</p>}
         {results.map((blog, index) => (
           <div key={index}>
@@ -51,19 +51,7 @@ const Search = () => {
   };
 
   const searchForm = () => (
-    <form
-      onSubmit={searchSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        alignSelf: "flex-end",
-        justifyContent: "space-around",
-        width: "300px",
-        padding: "80px 0 10px 0",
-        background: "black"
-      }}
-    >
+    <form onSubmit={searchSubmit} style={searchPanel}>
       <div>
         <input
           type="search"
@@ -87,6 +75,22 @@ const Search = () => {
       </div>
     </>
   );
+};
+
+const searchPanel = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  alignSelf: "flex-end",
+  justifyContent: "space-around",
+  width: "300px",
+  padding: "80px 0 10px 0",
+  background: "black"
+};
+
+const searchResultsStyles = {
+  background: "black",
+  color: "white"
 };
 
 export default Search;
