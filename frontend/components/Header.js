@@ -35,7 +35,7 @@ const Header = () => {
             {APP_NAME} 🖋👨‍💻
           </NavLink>
         </Link>
-        <Search style={searchForm} />
+
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto">
@@ -101,6 +101,7 @@ const Header = () => {
           </Nav>
         </Collapse>
       </Navbar>
+      <Search />
     </React.Fragment>
   );
 };
@@ -135,11 +136,6 @@ const navIcons = {
     "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
 };
 
-const searchForm = {
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center"
-};
 const dashboardText = {
   fontSize: "1.2rem",
   color: "lightyellow"

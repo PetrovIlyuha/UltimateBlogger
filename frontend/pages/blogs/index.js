@@ -188,7 +188,7 @@ Blogs.getInitialProps = () => {
 };
 
 const categoriesPageStyles = {
-  paddingTop: "100px",
+  paddingTop: "150px",
   background:
     "radial-gradient(100% 225% at 100% 0%, #FF0000 0%, #000000 100%), linear-gradient(236deg, #00C2FF 0%, #000000 100%), linear-gradient(135deg, #CDFFEB 0%, #CDFFEB 36%, #009F9D 36%, #009F9D 60%, #07456F 60%, #07456F 67%, #0F0A3C 67%, #0F0A3C 100%)",
   backgroundBlendMode: "overlay, hard-light, normal",
