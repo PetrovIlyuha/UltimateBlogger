@@ -18,7 +18,7 @@ const BlogUpdate = ({ router }) => {
   const [tags, setTags] = useState([]);
 
   const [checked, setChecked] = useState([]); // checked categories
-  const [checkedTag, setCheckedTag] = useState([]); // checked tags
+  const [checkedTags, setCheckedTags] = useState([]); // checked tags
   const [values, setValues] = useState({
     error: "",
     success: "",
@@ -65,7 +65,7 @@ const BlogUpdate = ({ router }) => {
     blogTags.map((tag, index) => {
       tagsArray.push(tag._id);
     });
-    setCheckedTag(tagsArray);
+    setCheckedTags(tagsArray);
   };
 
   const initCategories = () => {
@@ -103,14 +103,14 @@ const BlogUpdate = ({ router }) => {
 
   const handleToggleTags = tag => () => {
     setValues({ ...values, error: "" });
-    const clickedTag = checkedTag.indexOf(tag);
-    const allTags = [...checkedTag];
+    const clickedTag = checkedTags.indexOf(tag);
+    const allTags = [...checkedTags];
     if (clickedTag === -1) {
       allTags.push(tag);
     } else {
       allTags.splice(clickedTag, 1);
     }
-    setCheckedTag(allTags);
+    setCheckedTags(allTags);
     formData.set("tags", allTags);
   };
 
@@ -140,7 +140,7 @@ const BlogUpdate = ({ router }) => {
   };
 
   const findOutTags = tag => {
-    const result = checkedTag.includes(tag);
+    const result = checkedTags.includes(tag);
     if (result) {
       return true;
     }
@@ -195,7 +195,6 @@ const BlogUpdate = ({ router }) => {
         }
       }
     });
-    console.log(success);
   };
 
   const showError = () => {

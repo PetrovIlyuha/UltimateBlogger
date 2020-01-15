@@ -138,12 +138,11 @@ const CreateBlog = ({ router }) => {
     return (
       categories &&
       categories.map((c, index) => (
-        <li className="list-unstyled">
+        <li className="list-unstyled" key={index}>
           <input
             onChange={handleToggle(c._id)}
             type="checkbox"
             className="mr-2"
-            key={index}
           />
           <label className="form-check-label">{c.name}</label>
         </li>
@@ -155,12 +154,11 @@ const CreateBlog = ({ router }) => {
     return (
       tags &&
       tags.map((tag, index) => (
-        <li className="list-unstyled">
+        <li className="list-unstyled" key={index}>
           <input
             onChange={handleToggleTags(tag._id)}
             type="checkbox"
             className="mr-2"
-            key={index}
           />
           <label className="form-check-label">{tag.name}</label>
         </li>

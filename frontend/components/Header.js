@@ -65,9 +65,9 @@ const Header = () => {
                 </NavItem>
                 <NavItem>
                   <Link href="/user">
-                    <NavLink style={dashboardText}>
-                      <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
-                    </NavLink>
+                    <div style={dashboardText}>
+                      🕛{isAuth().name}`s Dashboard
+                    </div>
                   </Link>
                 </NavItem>
                 <NavItem>
@@ -85,9 +85,9 @@ const Header = () => {
                   </Link>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/admin" style={dashboardText}>
-                    <NavLink>🕛{isAuth().name}`s Dashboard</NavLink>
-                  </NavLink>
+                  <Link href="/admin" style={dashboardText}>
+                    <div>🕛{isAuth().name}`s Dashboard</div>
+                  </Link>
                 </NavItem>
                 <NavItem>
                   <GoSignOut
@@ -121,12 +121,13 @@ const navItem = {
 
 const navIcons = {
   display: "flex",
-  justifyContent: "space-around",
+  flexDirection: "row",
+  justifyContent: "space-between",
   marginRight: "30px",
   alignItems: "center",
-  maxWidth: "330px",
+  maxWidth: "350px",
   color: "lightyellow",
-  fontSize: "1.4rem",
+  fontSize: "1.5rem",
   cursor: "pointer",
   textShadow:
     "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
