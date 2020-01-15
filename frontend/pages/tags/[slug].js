@@ -50,11 +50,11 @@ const Tag = ({ tag, blogs, query }) => {
                 <h1 className="display-4 wont-weight-bold text-white">
                   {tag.name}
                 </h1>
-                <section style={{ color: "white" }}>
+                <section style={styledSection}>
                   {blogs.map((blog, index) => {
                     return (
-                      <div>
-                        <Card blog={blog} key={index} />
+                      <div key={index}>
+                        <Card blog={blog} />
                         <hr style={{ borderColor: "white" }} />
                       </div>
                     );
@@ -85,5 +85,9 @@ const categoriesPageStyles = {
   backgroundBlendMode:
     "hard-light, overlay, overlay, overlay, difference, difference, normal",
   paddingTop: "100px"
+};
+
+const styledSection = {
+  color: "white"
 };
 export default Tag;
