@@ -27,7 +27,8 @@ const CategoryTag = () => {
 
 const categoriesPageStyles = {
   backgroundColor: "#2f2347",
-  height: "100vh"
+  height: "100vh",
+  paddingTop: "100px"
 };
 
 export default CategoryTag;
