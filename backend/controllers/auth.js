@@ -62,7 +62,7 @@ exports.signout = (req, res) => {
 };
 
 exports.requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET
+  secret: process.env.JWT_SECRET //req.user available as long as we get token from session
 });
 
 exports.authMiddleware = (req, res, next) => {
