@@ -9,14 +9,12 @@ exports.read = (req, res) => {
 
 exports.publicProfile = (req, res) => {
   let username = req.params.username;
-  let user, blogs;
-  User.findOne({ usename }).exec((err, userFromDB) => {
-    if (err || !userFromDB) {
+  User.findOne({ username }).exec((err, user) => {
+    if (err || !user) {
       return res.status(400).json({
         error: "User not found..."
       });
     } else {
-      user = userFromDB;
       Blog.find({ postedBy: user._id })
         .populate("categories", "_id name slug")
         .populate("tags", "_id name slug")
@@ -32,6 +30,7 @@ exports.publicProfile = (req, res) => {
             });
           }
           user.photo = undefined;
+          user.hashed_password = undefined;
           res.json({
             user,
             blogs: data
