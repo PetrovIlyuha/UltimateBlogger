@@ -2,6 +2,7 @@ import Link from "next/link";
 import moment from "moment";
 import renderHTML from "react-render-html";
 import { API } from "../../config";
+import { userPublicProfile } from "../../actions/user";
 
 const Card = ({ blog }) => {
   const showBlogCategories = blog => {
@@ -38,7 +39,11 @@ const Card = ({ blog }) => {
         <p className="lead pt-1 pb-1 mt-3" style={authoredBy}>
           >{" "}
           <span style={{ color: "black", fontWeight: "bold" }}>
-            Authored by {blog.postedBy.name} | Published
+            Authored by{" "}
+            <a href={`/profile/${blog.postedBy.username}`}>
+              {blog.postedBy.name}
+            </a>
+            | Published
           </span>{" "}
           {moment(blog.updatedAt).fromNow()}
         </p>

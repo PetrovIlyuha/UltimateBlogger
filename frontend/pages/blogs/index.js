@@ -15,7 +15,8 @@ const Blogs = ({
   totalBlogs,
   blogsLimit,
   blogsSkip,
-  router
+  router,
+  username
 }) => {
   const head = () => (
     <Head>
@@ -175,6 +176,7 @@ Blogs.getInitialProps = () => {
     if (data.error) {
       console.log(data.error);
     } else {
+      console.log(data);
       return {
         blogs: data.allBlogs,
         categories: data.allCategories,

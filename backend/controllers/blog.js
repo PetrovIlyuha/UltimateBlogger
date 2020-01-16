@@ -128,7 +128,7 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
   let limit = req.body.limit ? parseInt(req.body.limit) : 10;
   let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 
-  let allBlogs, allCategories, allTags;
+  let allBlogs, allCategories, allTags, username;
 
   Blog.find({})
     .populate("categories", "_id name slug")
@@ -138,7 +138,7 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
     .skip(skip)
     .limit(limit)
     .select(
-      "_id title slug excerpt categories tags postedBy createdAt updatedAt"
+      "_id title slug excerpt categories tags postedBy username createdAt updatedAt"
     )
     .exec((err, data) => {
       if (err) {
@@ -164,7 +164,12 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
           }
           allTags = tags;
           // return all data
-          res.json({ allBlogs, allCategories, allTags, size: allBlogs.length });
+          res.json({
+            allBlogs,
+            allCategories,
+            allTags,
+            size: allBlogs.length
+          });
         });
       });
     });
