@@ -103,7 +103,11 @@ const SingleBlog = ({ blog, query }) => {
                 <p className="lead pt-1 pb-1 mt-3" style={authoredBy}>
                   >{" "}
                   <span style={{ color: "black", fontWeight: "bold" }}>
-                    Authored by {blog.postedBy.name} | Published
+                    Authored by{" "}
+                    <Link href={`/profile/${blog.postedBy.username}`}>
+                      <a>{blog.postedBy.username}</a>
+                    </Link>{" "}
+                    | Published
                   </span>{" "}
                   {moment(blog.updatedAt).fromNow()}
                 </p>

@@ -40,9 +40,9 @@ const Card = ({ blog }) => {
           >{" "}
           <span style={{ color: "black", fontWeight: "bold" }}>
             Authored by{" "}
-            <a href={`/profile/${blog.postedBy.username}`}>
-              {blog.postedBy.name}
-            </a>
+            <Link href={`/profile/${blog.postedBy.username}`}>
+              <a>{blog.postedBy.name}</a>
+            </Link>
             | Published
           </span>{" "}
           {moment(blog.updatedAt).fromNow()}

@@ -43,8 +43,8 @@ const SmallCard = ({ blog }) => {
           >{" "}
           <span style={{ color: "black", fontWeight: "bold" }}>
             Authored by{" "}
-            <Link href={`/`}>
-              <a>{blog.postedBy.name}</a>
+            <Link href={`/profile/${blog.postedBy.username}`}>
+              <a>{blog.postedBy.username}</a>
             </Link>{" "}
             | Published
           </span>{" "}
