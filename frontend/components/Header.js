@@ -38,7 +38,7 @@ const Header = () => {
 
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto">
+          <Nav className="ml-auto" style={navIcons}>
             {!isAuth() && (
               <div style={navIcons}>
                 <NavItem>
