@@ -206,7 +206,7 @@ const CreateBlog = ({ router }) => {
             onChange={handleBody}
           />
         </div>
-        <div>
+        <div style={{ marginTop: "10px" }}>
           <button type="submit" className="btn btn-primary">
             Publish Blog
           </button>

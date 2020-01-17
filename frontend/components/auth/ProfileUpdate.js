@@ -52,20 +52,57 @@ const ProfileUpdate = () => {
     initUserData();
   }, []);
 
-  const handleChange = name => event => {};
+  const handleChange = name => event => {
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
+    let userData = new FormData();
+    userData.set(name, value);
+    setValues({
+      ...values,
+      [name]: value,
+      userData: userData,
+      error: false,
+      success: false
+    });
+  };
 
-  const handleSubmit = event => {};
+  const handleSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, loading: true });
+    updateProfile(token, userData).then(data => {
+      if (data.error) {
+        setValues({
+          ...values,
+          error: data.error,
+          success: false,
+          loading: false
+        });
+      } else {
+        setValues({
+          ...values,
+          username: data.username,
+          name: data.name,
+          email: data.email,
+          about: data.about,
+          success: true,
+          loading: false
+        });
+      }
+    });
+  };
 
   const profileUpdateForm = () => (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label className="text-muted font-weight-bold">Profile Photo</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="form-control"
-          onChange={handleChange("photo")}
-        />
+        <label className="btn btn-outline-info">
+          Upload Profile Photo
+          <input
+            onChange={handleChange("photo")}
+            type="file"
+            accept="image/*"
+            className="float-left"
+            hidden
+          />
+        </label>
       </div>
       <div className="form-group">
         <label className="text-muted font-weight-bold">User Name</label>
@@ -113,8 +150,8 @@ const ProfileUpdate = () => {
         />
       </div>
       <div>
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="btn btn-secondary mt-3">
+          Submit Changes
         </button>
       </div>
     </form>
