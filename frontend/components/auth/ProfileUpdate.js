@@ -132,7 +132,7 @@ const ProfileUpdate = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-white font-weight-bold">About</label>
+        <label className="font-weight-bold">About</label>
         <textarea
           type="text"
           className="form-control"
@@ -141,7 +141,7 @@ const ProfileUpdate = () => {
         />
       </div>
       <div>
-        <label className="text-white font-weight-bold">Password</label>
+        <label className="font-weight-bold">Password</label>
         <input
           type="password"
           className="form-control"
