@@ -62,18 +62,19 @@ exports.update = (req, res) => {
     }
 
     if (files.photo) {
-      if (files.photo.size > 100000) {
+      if (files.photo.size > 100000000) {
         return res.status(400).json({
-          error: "Photo exceeds 1Mb...Compress or choose lesser sized image"
+          error: "Photo exceeds 1Mb...Compress or choose smaller image"
         });
       }
       user.photo.data = fs.readFileSync(files.photo.path);
       user.photo.contentType = files.photo.type;
     }
+
     user.save((err, result) => {
       if (err) {
         return res.status(400).json({
-          error: errorHandler(err)
+          error: "All fields required"
         });
       }
       user.hashed_password = undefined;

@@ -28,7 +28,7 @@ export const getProfile = token => {
     .catch(error => console.log(error));
 };
 
-export const updateProfile = (token, user) => {
+export const update = (token, user) => {
   return fetch(`${API}/user/update`, {
     method: "PUT",
     headers: {
