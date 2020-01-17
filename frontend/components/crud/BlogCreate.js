@@ -91,7 +91,6 @@ const CreateBlog = ({ router }) => {
         setCheckedTag([]);
       }
     });
-    console.log(values);
   };
 
   const handleChange = name => event => {
