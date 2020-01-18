@@ -1,8 +1,9 @@
 const User = require("../models/user");
+const Blog = require("../models/blog");
 const shortId = require("shortid");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
-const errorHandler = require("../helpers/dbErrorHandler");
+const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
