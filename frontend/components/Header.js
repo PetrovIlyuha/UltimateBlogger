@@ -90,7 +90,7 @@ const Header = () => {
               </div>
             )}
             {isAuth() && isAuth().role === 1 && (
-              <NavItem style={navIcons}>
+              <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
                   <Link href="/user/crud/create">
                     <NavLink>Create Blog</NavLink>
@@ -111,7 +111,7 @@ const Header = () => {
                     onClick={() => signout(() => Router.push(`/signin`))}
                   />
                 </NavItem>
-              </NavItem>
+              </div>
             )}
           </Nav>
         </Collapse>
