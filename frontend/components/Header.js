@@ -41,17 +41,22 @@ const Header = () => {
           <Nav className="ml-auto" style={navIcons}>
             {!isAuth() && (
               <div style={navIcons}>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
+                  <Link href="/user/crud/create">
+                    <NavLink>Create Blog</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
                     <FaBlogger />
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/signin">
                     <FaSignInAlt />
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/signup">
                     <GiHeartInside />
                   </Link>
@@ -60,19 +65,24 @@ const Header = () => {
             )}
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
+                  <Link href="/user/crud/create">
+                    <NavLink>Create Blog</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
                     <FaBlogger />
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/user">
                     <div style={dashboardText}>
                       🕛{isAuth().name}`s Dashboard
                     </div>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <GoSignOut
                     onClick={() => signout(() => Router.push(`/signin`))}
                   />
@@ -80,23 +90,28 @@ const Header = () => {
               </div>
             )}
             {isAuth() && isAuth().role === 1 && (
-              <div style={navIcons}>
-                <NavItem>
+              <NavItem style={navIcons}>
+                <NavItem style={navSingleIcon}>
+                  <Link href="/user/crud/create">
+                    <NavLink>Create Blog</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
                     <FaBlogger />
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/admin" style={dashboardText}>
                     <div>🕛{isAuth().name}`s Dashboard</div>
                   </Link>
                 </NavItem>
-                <NavItem>
+                <NavItem style={navSingleIcon}>
                   <GoSignOut
                     onClick={() => signout(() => Router.push(`/signin`))}
                   />
                 </NavItem>
-              </div>
+              </NavItem>
             )}
           </Nav>
         </Collapse>
@@ -123,21 +138,25 @@ const navItem = {
 };
 
 const navIcons = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  marginRight: "30px",
+  display: "grid",
+  width: "300px",
+  gridGap: "5px",
+  gridTemplateColumns: "1fr 20px 1fr 20px",
+  marginRight: "20px",
   alignItems: "center",
-  maxWidth: "350px",
+  alignSelf: "center",
   color: "lightyellow",
-  fontSize: "1.5rem",
+  fontSize: "1rem",
   cursor: "pointer",
   textShadow:
     "0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0)"
 };
 
+const navSingleIcon = {
+  textAlign: "center"
+};
 const dashboardText = {
-  fontSize: "1.2rem",
+  fontSize: "1rem",
   color: "lightyellow"
 };
 
