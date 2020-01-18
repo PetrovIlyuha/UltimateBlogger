@@ -69,8 +69,14 @@ export const listRelated = blog => {
     .catch(err => console.log(err));
 };
 
-export const list = () => {
-  return fetch(`${API}/blogs`, {
+export const list = username => {
+  let listBlogsEndpoint;
+  if (username) {
+    listBlogsEndpoint = `${API}/${username}/blogs`;
+  } else {
+    listBlogsEndpoint = `${API}/blogs`;
+  }
+  return fetch(listBlogsEndpoint, {
     method: "GET"
   })
     .then(response => {
