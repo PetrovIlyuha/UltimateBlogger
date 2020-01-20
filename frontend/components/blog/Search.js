@@ -84,7 +84,7 @@ const searchPanel = {
   alignSelf: "flex-end",
   justifyContent: "space-around",
   width: "300px",
-  paddingTop: "80px",
+  paddingTop: "90px",
   paddingBottom: "10px",
   background: "black"
 };
