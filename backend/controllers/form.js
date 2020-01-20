@@ -25,3 +25,31 @@ exports.contactForm = (req, res) => {
     });
   });
 };
+
+exports.contactBlogAuthorForm = (req, res) => {
+  const { authorEmail, email, name, message } = req.body;
+
+  let mailList = [authorEmail, process.env.EMAIL_TO];
+
+  const emailData = {
+    to: mailList,
+    from: email,
+    subject: `Someone messaged you from - ${process.env.APP_NAME}`,
+    text: `Email recieved from contact form \n Sender name: ${name} \n Sender email: ${email} \n Sender message: ${message}`,
+    html: `
+      <h4>Message received from:</h4>
+      <p>Name: ${name}</p>
+      <p>Email: ${email}</p>
+      <p>Message: ${message}</p>
+      <hr/>
+      <p>This email may contain sensitive information</p>
+      <p>https://ultimate-blogs.com</p>
+    `
+  };
+
+  sendGrigMail.send(emailData).then(sent => {
+    return res.json({
+      success: true
+    });
+  });
+};
