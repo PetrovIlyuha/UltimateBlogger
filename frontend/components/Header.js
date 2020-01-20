@@ -52,6 +52,11 @@ const Header = () => {
                   </Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
+                  <Link href="/contact">
+                    <NavLink>Contact Form</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
                   <Link href="/signin">
                     <FaSignInAlt />
                   </Link>
@@ -83,6 +88,11 @@ const Header = () => {
                   </Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
+                  <Link href="/contact">
+                    <NavLink>Contact Form</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
                   <GoSignOut
                     onClick={() => signout(() => Router.push(`/signin`))}
                   />
@@ -104,6 +114,11 @@ const Header = () => {
                 <NavItem style={navSingleIcon}>
                   <Link href="/admin" style={dashboardText}>
                     <div>🕛{isAuth().name}`s Dashboard</div>
+                  </Link>
+                </NavItem>
+                <NavItem style={navSingleIcon}>
+                  <Link href="/contact">
+                    <NavLink>Contact Form</NavLink>
                   </Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
@@ -139,9 +154,9 @@ const navItem = {
 
 const navIcons = {
   display: "grid",
-  width: "300px",
+  width: "420px",
   gridGap: "5px",
-  gridTemplateColumns: "1fr 20px 1fr 20px",
+  gridTemplateColumns: "1fr 20px 1fr 1fr 20px",
   marginRight: "20px",
   alignItems: "center",
   alignSelf: "center",
