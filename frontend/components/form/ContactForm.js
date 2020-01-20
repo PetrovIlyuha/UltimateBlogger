@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { emailContactForm } from "../../actions/form";
 
-const ContactForm = () => {
+const ContactForm = ({ authorEmail }) => {
   const [values, setValues] = useState({
     message: "",
     name: "",
@@ -17,7 +17,25 @@ const ContactForm = () => {
 
   const clickSubmit = e => {
     e.preventDefault();
+    setValues({ ...values, buttonText: "Sending..." });
+    emailContactForm({ authorEmail, name, email, message }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          success: data.success,
+          sent: true,
+          name: "",
+          email: "",
+          message: "",
+          buttonText: "Sent",
+          error: ""
+        });
+      }
+    });
   };
+
   const handleChange = name => event => {
     setValues({
       ...values,
@@ -28,6 +46,19 @@ const ContactForm = () => {
     });
   };
 
+  const showSuccessMessage = () =>
+    success && (
+      <div className="alert alert-info">Thank you for contacting us</div>
+    );
+
+  const showErrorMessage = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
   const contactForm = () => {
     return (
       <form onSubmit={clickSubmit} style={formStyled}>
@@ -47,7 +78,7 @@ const ContactForm = () => {
           <input
             type="text"
             value={name}
-            onChange={handleChange}
+            onChange={handleChange("name")}
             className="form-control"
             required
           />
@@ -57,7 +88,7 @@ const ContactForm = () => {
           <input
             type="text"
             value={email}
-            onChange={handleChange}
+            onChange={handleChange("email")}
             className="form-control"
             required
           />
@@ -69,7 +100,13 @@ const ContactForm = () => {
     );
   };
 
-  return <>{contactForm()}</>;
+  return (
+    <>
+      {showSuccessMessage()}
+      {showErrorMessage()}
+      {contactForm()}
+    </>
+  );
 };
 
 const formStyled = {
