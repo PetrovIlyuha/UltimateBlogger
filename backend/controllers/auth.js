@@ -4,6 +4,8 @@ const shortId = require("shortid");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const sendGrigMail = require("@sendgrid/mail");
+sendGrigMail.setApiKey(process.env.SENDGRIG_API_KEY);
 
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
@@ -116,3 +118,35 @@ exports.canUpdateDeleteBlog = (req, res, next) => {
     next();
   });
 };
+
+exports.forgotPassword = (req, res) => {
+  const { email } = req.body;
+
+  User.findOne({ email }, (err, user) => {
+    if (err && !user) {
+      return res.status(401).json({
+        error: "User with that email does not exists..."
+      });
+    }
+
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_RESET_PASSWORD, {
+      expiresIn: "10m"
+    });
+    // email sending
+    const emailData = {
+      from: process.env.EMAIL_FROM,
+      to: email,
+      subject: `Password Reset Link`,
+      html: `
+        <p>Please use the following link to reset your password:</p>
+        <p>Sender email: ${email}</p>
+        <p>Sender message: ${message}</p>
+        <hr/>
+        <p>This email may contain sensitive information</p>
+        <p>https://ultimate-blogs.com</p>
+      `
+    // populating DB > user > resetPasswordLink
+  });
+};
+
+exports.resetPassword = (req, res) => {};
