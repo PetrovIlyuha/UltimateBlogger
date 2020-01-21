@@ -1,6 +1,7 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
 import { signup } from "../../actions/auth";
+import Link from "next/link";
 
 const SignupComponent = () => {
   const [values, setValues] = useState({
@@ -41,12 +42,15 @@ const SignupComponent = () => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const showLoading = () =>
-    loading ? <div className="alert alert-info">Loading...</div> : "";
-  const showError = () =>
-    error ? <div className="alert alert-danger">{error}</div> : "";
-  const showMessage = () =>
-    message ? <div className="alert alert-info">{message}</div> : "";
+  const showLoading = () => {
+    return loading ? <div className="alert alert-info">Loading...</div> : "";
+  };
+  const showError = () => {
+    return error ? <div className="alert alert-danger">{error}</div> : "";
+  };
+  const showMessage = () => {
+    return message ? <div className="alert alert-info">{message}</div> : "";
+  };
 
   const signupForm = () => {
     return (
@@ -95,6 +99,10 @@ const SignupComponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signupForm()}
+      <br />
+      <Link href="/auth/password/forgot">
+        <a className="btn btn-outline-danger">Forgot Password</a>
+      </Link>
     </>
   );
 };

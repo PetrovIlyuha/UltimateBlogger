@@ -39,12 +39,15 @@ const SignInComponent = () => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const showLoading = () =>
-    loading ? <div className="alert alert-info">Loading...</div> : "";
-  const showError = () =>
-    error ? <div className="alert alert-danger">{error}</div> : "";
-  const showMessage = () =>
-    message ? <div className="alert alert-info">{message}</div> : "";
+  const showLoading = () => {
+    return loading ? <div className="alert alert-info">Loading...</div> : "";
+  };
+  const showError = () => {
+    return error ? <div className="alert alert-danger">{error}</div> : "";
+  };
+  const showMessage = () => {
+    return message ? <div className="alert alert-info">{message}</div> : "";
+  };
 
   const signinForm = () => {
     return (

@@ -40,11 +40,11 @@ const ForgotPassword = () => {
   };
 
   const showError = () => {
-    error ? <div className="alert alert-danger">{error}</div> : "";
+    return error ? <div className="alert alert-danger">{error}</div> : "";
   };
 
   const showMessage = () => {
-    message ? <div className="alert alert-success">{message}</div> : "";
+    return message ? <div className="alert alert-success">{message}</div> : "";
   };
 
   const passwordForgotForm = () => (

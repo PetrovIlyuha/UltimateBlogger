@@ -143,7 +143,7 @@ export const forgotPassword = email => {
     .catch(error => console.log(error));
 };
 
-export const resetPassword = resetinfo => {
+export const resetPassword = resetInfo => {
   return fetch(`${API}/reset-password`, {
     method: "PUT",
     headers: {
