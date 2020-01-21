@@ -2,6 +2,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
 import { signin, authenticate, isAuth } from "../../actions/auth";
 import Router from "next/router";
+import Link from "next/link";
 
 const SignInComponent = () => {
   const [values, setValues] = useState({
@@ -23,9 +24,6 @@ const SignInComponent = () => {
       if (data.error) {
         setValues({ ...values, error: data.error, loaging: false });
       } else {
-        // TODO: Save user token to cookie
-        // TODO: Save user info to local storage
-        // TODO: authenticate user
         authenticate(data, () => {
           if (isAuth && isAuth().role === 1) {
             Router.push("/admin");
@@ -35,7 +33,6 @@ const SignInComponent = () => {
         });
       }
     });
-    console.log(values);
   };
 
   const handleChange = name => e => {
@@ -85,6 +82,10 @@ const SignInComponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signinForm()}
+      <br />
+      <Link href="/auth/password/forgot">
+        <a className="btn btn-outline-danger">Forgot Password</a>
+      </Link>
     </>
   );
 };
