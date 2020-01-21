@@ -6,6 +6,7 @@ const expressJwt = require("express-jwt");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 const sendGrigMail = require("@sendgrid/mail");
 sendGrigMail.setApiKey(process.env.SENDGRIG_API_KEY);
+const _ = require("lodash");
 
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
