@@ -30,7 +30,7 @@ exports.forgotPasswordValidator = [
     .withMessage("Email address is incorrect...")
 ];
 
-exprorts.resetPasswordValidator = [
+exports.resetPasswordValidator = [
   check("newPassword")
     .not()
     .isEmpty()
