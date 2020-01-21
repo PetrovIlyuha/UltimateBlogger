@@ -188,7 +188,7 @@ const authoredBy = {
   backgroundBlendMode: "overlay, overlay, normal",
 
   color: "#9ad9ab",
-  maxWidth: "350px",
+  maxWidth: "450px",
   paddingLeft: "12px",
   fontSize: "0.9rem",
   borderRadius: "20px",
