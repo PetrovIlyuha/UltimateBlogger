@@ -64,6 +64,7 @@ const Header = () => {
                 <NavItem style={navSingleIcon}>
                   <Link href="/signup">
                     <GiHeartInside />
+                    {/* <NavLink>Sign Up</NavLink> */}
                   </Link>
                 </NavItem>
               </div>
@@ -71,9 +72,7 @@ const Header = () => {
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/user/crud/create">
-                    <NavLink>Create Blog</NavLink>
-                  </Link>
+                  <Link href="/user/crud/create"></Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
