@@ -22,7 +22,7 @@ const ActivateAccount = ({ router }) => {
       const { name } = jwt.decode(token);
       setValues({ ...values, name, token });
     }
-  }, []);
+  }, [router]);
 
   const clickSubmit = e => {
     e.preventDefault();
@@ -54,7 +54,8 @@ const ActivateAccount = ({ router }) => {
         <h3>Dear {name}, ready to activate your account?</h3>
         {showLoading()}
         {error && error}
-        {success && "You have successfully activated your account..."}
+        {success &&
+          "You have successfully activated your account...Please Sign In"}
         {showButton && (
           <div className="btn btn-outline-primary" onClick={clickSubmit}>
             Activate Account

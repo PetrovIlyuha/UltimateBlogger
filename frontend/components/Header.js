@@ -48,7 +48,7 @@ const Header = () => {
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
-                    <FaBlogger />
+                    <NavLink>All Blogs</NavLink>
                   </Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
@@ -64,7 +64,6 @@ const Header = () => {
                 <NavItem style={navSingleIcon}>
                   <Link href="/signup">
                     <GiHeartInside />
-                    {/* <NavLink>Sign Up</NavLink> */}
                   </Link>
                 </NavItem>
               </div>
@@ -72,7 +71,7 @@ const Header = () => {
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/user/crud/create"></Link>
+                  <Link href="/user/crud/create">Create Blog</Link>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/blogs">
@@ -153,9 +152,9 @@ const navItem = {
 
 const navIcons = {
   display: "grid",
-  width: "420px",
+  width: "440px",
   gridGap: "5px",
-  gridTemplateColumns: "1fr 20px 1fr 1fr 20px",
+  gridTemplateColumns: "1fr 1fr 1fr 1fr 20px",
   marginRight: "20px",
   alignItems: "center",
   alignSelf: "center",
