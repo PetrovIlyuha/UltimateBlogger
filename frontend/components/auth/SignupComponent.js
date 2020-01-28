@@ -1,6 +1,6 @@
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState } from "react";
-import { signup } from "../../actions/auth";
+import { signup, preSignup } from "../../actions/auth";
 import Link from "next/link";
 
 const SignupComponent = () => {
