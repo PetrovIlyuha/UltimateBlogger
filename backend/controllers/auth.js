@@ -7,6 +7,7 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 const sendGrigMail = require("@sendgrid/mail");
 sendGrigMail.setApiKey(process.env.SENDGRIG_API_KEY);
 const _ = require("lodash");
+const { OAuth2Client } = require("google-auth-library");
 
 exports.preSignup = (req, res) => {
   const { name, email, password } = req.body;
@@ -268,4 +269,17 @@ exports.resetPassword = (req, res) => {
       });
     });
   }
+};
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+exports.googleLogin = (req, res) => {
+  const idToken = req.body.tokenId;
+  client
+    .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID })
+    .then(response => {
+      const { email_verified, name, email, jti } = response.payload;
+      if (email_verified) {
+        User.find({ email_verified });
+      }
+    });
 };

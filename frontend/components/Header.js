@@ -166,7 +166,10 @@ const navIcons = {
 };
 
 const navSingleIcon = {
-  textAlign: "center"
+  textAlign: "center",
+  color: "lightyellow",
+  fontSize: "1rem",
+  cursor: "pointer"
 };
 const dashboardText = {
   fontSize: "1rem",
