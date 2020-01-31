@@ -30,11 +30,9 @@ const Header = () => {
   return (
     <React.Fragment>
       <Navbar style={navStyles} expand="xs">
-        <Link href="/">
-          <NavLink style={navItem} className="font-weight-bold">
-            {APP_NAME} 🖋👨‍💻
-          </NavLink>
-        </Link>
+        <a href="/" style={navItem} className="font-weight-bold">
+          {APP_NAME} 🖋👨‍💻
+        </a>
 
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -42,14 +40,10 @@ const Header = () => {
             {!isAuth() && (
               <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/user/crud/create">
-                    <NavLink>Create Blog</NavLink>
-                  </Link>
+                  <a href="/user/crud/create">Create Blog</a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/blogs">
-                    <NavLink>All Blogs</NavLink>
-                  </Link>
+                  <a href="/blogs">All Blogs</a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/contact">
@@ -71,12 +65,10 @@ const Header = () => {
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/user/crud/create">Create Blog</Link>
+                  <a href="/user/crud/create">Create Blog</a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
-                  <Link href="/blogs">
-                    <FaBlogger />
-                  </Link>
+                  <a href="/blogs">All Blogs</a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/user">
