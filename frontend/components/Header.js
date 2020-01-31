@@ -65,10 +65,14 @@ const Header = () => {
             {isAuth() && isAuth().role === 0 && (
               <div style={navIcons}>
                 <NavItem style={navSingleIcon}>
-                  <a href="/user/crud/create">Create Blog</a>
+                  <a href="/user/crud/create" style={dashboardText}>
+                    Create Blog
+                  </a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
-                  <a href="/blogs">All Blogs</a>
+                  <a href="/blogs" style={dashboardText}>
+                    All Blogs
+                  </a>
                 </NavItem>
                 <NavItem style={navSingleIcon}>
                   <Link href="/user">
