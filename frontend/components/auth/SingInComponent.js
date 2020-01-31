@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signin, authenticate, isAuth } from "../../actions/auth";
 import Router from "next/router";
 import Link from "next/link";
+import LoginGoogle from "./LoginGoogle";
 
 const SignInComponent = () => {
   const [values, setValues] = useState({
@@ -74,7 +75,16 @@ const SignInComponent = () => {
             placeholder="Choose Password"
           />
         </FormGroup>
-        <Button className="btn-primary">Sign In</Button>
+        <div
+          style={{
+            display: "flex",
+            width: "450px",
+            justifyContent: "space-between"
+          }}
+        >
+          <Button className="btn-primary">Sign In</Button>
+          <LoginGoogle />
+        </div>
       </Form>
     );
   };
